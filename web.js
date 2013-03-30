@@ -20,7 +20,7 @@ var mongo = require('mongodb');
 
 var mongoUri = process.env.MONGOLAB_URI || 
   process.env.MONGOHQ_URL || 
-  'mongodb://localhost/mydb'; 
+  'mongodb://heroku_app14221325:mm8d0q78tmfmjro3qi0rgti9k4@ds043497.mongolab.com:43497/heroku_app14221325'; 
 
 mongo.Db.connect(mongoUri, function (err, db) {
   db.collection('mydocs', function(er, collection) {
