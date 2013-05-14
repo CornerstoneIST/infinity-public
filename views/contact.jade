@@ -1,0 +1,76 @@
+#body
+  .breadcrumbs
+    .container
+      h1.color-green.pull-left Our Contacts
+      ul.pull-right.breadcrumb
+        li
+          a(href='index.html') Home
+          span.divider /
+        li.active Contact
+  #map.map.margin-bottom-40
+  .container
+    .row-fluid
+      .span9
+        .headline
+          h3 Contacts
+        p
+          | At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas feugiat. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit landitiis.
+        br
+        form
+          label Name
+          input.span7.border-radius-none(type='text')
+          label
+            | Email
+            span.color-red *
+          input.span7.border-radius-none(type='email')
+          label Message
+          textarea.span10.border-radius-none(rows='8')
+          p
+            button.btn-u(type='submit') Send Message
+           Contacts 
+        .headline
+          h3 Contacts
+        ul.unstyled.who.margin-bottom-20
+          li
+            a(href='#')
+              i.icon-home
+              | 5B Streat, City 50987 New Town US
+          li
+            a(href='#')
+              i.icon-envelope-alt
+              | info@example.com
+          li
+            a(href='#')
+              i.icon-phone-sign
+              | 1(222) 5x86 x97x
+          li
+            a(href='#')
+              i.icon-globe
+              | http://www.example.com
+        .headline
+          h3 Business Hours
+        ul.unstyled
+          li
+            strong Monday-Friday:
+            | 10am to 8pm
+          li
+            strong Saturday:
+            | 11am to 3pm
+          li
+            strong Sunday:
+            | Closed
+        .headline
+          h3 Why we are?
+        p
+          | At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.
+        ul.unstyled
+          li
+            i.icon-ok.color-green
+            | Odio dignissimos ducimus
+          li
+            i.icon-ok.color-green
+            | Blanditiis praesentium volup
+          li
+            i.icon-ok.color-green
+            | Eos et accusamus 
+    include includes/clients

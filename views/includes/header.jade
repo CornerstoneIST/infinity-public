@@ -1,0 +1,46 @@
+#top
+    .container
+        ul#loginbar.pull-right
+          li
+            i.icon-globe
+            a
+              | Select Language
+              i.icon-sort-up
+            ul.nav-list
+              li.active
+                a(href='#') English
+                i.icon-ok
+              li
+                a(href='#') Spanish
+              li
+                a(href='#') Russian
+              li
+                a(href='#') German
+          li.devider
+          li
+            a.login-btn(href='#') Help
+          li.devider
+          li
+            a.login-btn(href='/login') Login
+    #header
+      .container
+        #logo
+          a(href='/')
+            img(src='/img/logo.png', alt='Logo')
+        .navbar
+          .navbar-inner
+            a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            .nav-collapse.collapse
+              ul.nav.top-2
+                li.active
+                  a(href='/') Home
+                li
+                li
+                  a(href='/about') About
+                li
+                li
+                  a(href='/contact') Contact
+                li

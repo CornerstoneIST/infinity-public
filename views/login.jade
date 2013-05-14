@@ -1,0 +1,35 @@
+#body
+  .breadcrumbs.margin-bottom-40
+    .container
+      h1.color-green.pull-left Login
+      ul.pull-right.breadcrumb
+        li
+          a(href='index.html') Home
+          span.divider /
+        li
+          a(href='') Pages
+          span.divider /
+        li.active Login
+  .container
+    .row-fluid
+      form.log-page
+        h3 Login to your account
+        .input-prepend
+          span.add-on
+            i.icon-user
+          input.input-xlarge(type='email', placeholder='Email Address')
+        .input-prepend
+          span.add-on
+            i.icon-lock
+          input.input-xlarge(type='password', placeholder='Password')
+        .controls.form-inline
+          label.checkbox
+            input(type='checkbox')
+            | Stay Signed in
+          button.btn-u.pull-right(type='submit') Login
+        hr
+        h4 Forget your Password ?
+        p
+          | no worries,
+          a.color-green(href='/forgot-password')  click here
+          |  to reset your password.
