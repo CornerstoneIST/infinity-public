@@ -1,13 +1,10 @@
 {
-  "name": "node-example",
-  "version": "0.0.1",
-  "dependencies": {
-    "pg": "0.6.15",
-    "express": "latest",
-    "mongodb": "1.1.11"
-  },
-  "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
+    "name": "application-name"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "express": "2.5.8"
+    , "less": ">= 0.0.1"
+    , "jade": ">= 0.0.1"
   }
 }
