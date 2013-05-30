@@ -30,7 +30,7 @@ app.configure('development', function(){
 
 // Compatible
 
-// Now less files with @import 'whatever.less' will work(https://github.com/senchalabs/connect/pull/174)
+        // Now less files with @import 'whatever.less' will work(https://github.com/senchalabs/connect/pull/174)
 var TWITTER_BOOTSTRAP_PATH = './vendor/twitter/bootstrap/less';
 express.compiler.compilers.less.compile = function(str, fn){
   try {
@@ -40,16 +40,22 @@ express.compiler.compilers.less.compile = function(str, fn){
 }
 
 // Routes
+app.set('view options', { pretty: true });
 app.get('/', routes.index);
 app.get('/about', routes.about);
+app.get('/features', routes.features);
+app.get('/services', routes.services);
 app.get('/contact', routes.contact);
 app.get('/signup', routes.signup);
-app.get('/login', routes.login);
+app.get('/signin', routes.signin);
 app.get('/privacy-policy', routes.privacypolicy);
 app.get('/terms-of-service', routes.termsofservice);
+app.get('/reset', routes.reset);
+app.get('/pricing', routes.pricing);
+app.get('/blog', routes.blog);
 app.use(function(req, res, next){
   res.render('404.jade', {title: "404 - Page Not Found", showFullNav: false, status: 404, url: req.url });
 });
-app.listen(80, function(){
+app.listen(8080, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });

@@ -1,50 +1,5 @@
-#body
-  .breadcrumbs.margin-bottom-50
-    .container
-      h1.color-green.pull-left Register
-      ul.pull-right.breadcrumb
-        li
-          a(href='index.html') Home
-          span.divider /
-        li
-          a(href='') Pages
-          span.divider /
-        li.active Registration
-  .container
-    .row-fluid.margin-bottom-10
-      form.reg-page
-        h3 Register a new account
-        .controls
-          label First Name
-          input.span12(type='text')
-          label Last Name
-          input.span12(type='text')
-          label
-            | Email Address
-            span.color-red *
-          input.span12(type='email')
-        .controls
-          .span6
-            label
-              | Password
-              span.color-red *
-            input.span12(type='password')
-          .span6
-            label
-              | Confirm Password
-              span.color-red *
-            input.span12(type='password')
-        .controls.form-inline
-          label.checkbox
-            input(type='checkbox')
-            | I have read and agree to the
-            a(href='/terms-and-conditions')  Terms and Conditions
-            |  and the 
-            a(href='/privacy-policy') Privacy Policy
-            | .
-          button.btn-u.pull-right(type='submit') Register
-        hr
-        p
-          | Already Signed Up? Click
-          a.color-green(href='/login')  Sign In 
-          | to login your account.
+include css/signup
+-var selected = 'signup';
+include layout/header
+include content/signup
+include layout/footer

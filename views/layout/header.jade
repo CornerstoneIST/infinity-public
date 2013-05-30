@@ -1,0 +1,51 @@
+.navbar.transparent.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+          .nav-collapse.collapse
+            ul.nav.pull-right
+              li
+                - if(selected === 'home')
+                  a.active(href='/') HOME
+                - else
+                  a(href='/') HOME
+              li
+                - if(selected === 'about')
+                  a.active(href='/about') ABOUT US
+                - else
+                  a(href='/about') ABOUT US
+              li
+                - if(selected === 'features')
+                  a.active(href='/features') FEATURES
+                - else
+                  a(href='/features') FEATURES
+              li
+                - if(selected === 'services')
+                  a.active(href='/services') SERVICES
+                - else
+                  a(href='/services') SERVICES
+              li
+                - if(selected === 'signin')
+                  a.active(href='/signin') SIGN IN
+                - else
+                  a(href='/signin') SIGN IN
+              li
+                - if(selected === 'signup')
+                  a.active(href='/signup') SIGN UP
+                - else
+                  a(href='/signup') SIGN UP
+              li
+                - if(selected === 'pricing')
+                  a.active(href='/pricing') PRICING
+                - else
+                  a(href='/pricing') PRICING
+              li
+                - if(selected === 'contact')
+                  a.active(href='/contact') CONTACT US
+                - else
+                  a(href='/contact') CONTACT US
+              li
+                - if(selected === 'blog')
+                  a.active(href='/blog') BLOG
+                - else
+                  a(href='/blog') BLOG

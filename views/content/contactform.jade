@@ -1,0 +1,22 @@
+#contact
+      .container
+        .section_header
+          h3 Get in touch
+        .row.contact
+          p
+            | We’d love to hear from you. Interested in working together? Fill out the form below with some info about your project and I will get back to you as soon as I can. Please allow a couple days for me to respond.
+          form
+            .row.form
+              .span6.box
+                input.name(type='text', placeholder='Name')
+                input.mail(type='text', placeholder='Email')
+                input.phone(type='text', placeholder='Phone')
+              .span6.box.box_r
+                textarea(placeholder='Type a message here...')
+            .row.submit
+              .span5.box
+                label.checkbox
+                  input(type='checkbox')
+                  | Sign up for newsletter
+              .span3.right
+                input(type='submit', value='Send your message')
