@@ -7,6 +7,10 @@ exports.index = function(req, res){
   res.render('index', { title: 'Home' })
 };
 
+exports.comingsoon = function(req, res){
+	res.render('coming-soon', { title: 'Wuzy is Coming Soon!'})
+};
+
 exports.contact = function(req, res){
 	res.render('contact', { title: 'Contact' })
 };

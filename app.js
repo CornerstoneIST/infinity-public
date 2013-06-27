@@ -41,7 +41,7 @@ express.compiler.compilers.less.compile = function(str, fn){
 
 // Routes
 app.set('view options', { pretty: true });
-app.get('/', routes.index);
+app.get('/', routes.comingsoon);
 app.get('/about', routes.about);
 app.get('/features', routes.features);
 app.get('/services', routes.services);
