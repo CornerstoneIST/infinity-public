@@ -204,8 +204,8 @@ jQuery.extend(jQuery.easing, {
     }
 });
 
-var center = $(window).width() / 2;
-$(document).ready(function () {
+$(document).ready($.indexslider = function () {
+    var center = $(window).width() / 2;
     function d() {
         $(".slide.active img").each(function () {
             var g = parseInt($(this).attr("class").split(" ")[1].replace("left", ""));

@@ -1,0 +1,44 @@
+include layout/header
+#content
+include layout/footer
+#modal.modal.hide.in(tabindex="-1", role="dialog", aria-hidden="true")
+script#home-template(type='text/template')
+  include content/homeslider
+  include content/showcase
+  include content/features
+  include content/pricing
+  include content/clients
+script#about-template(type='text/template')
+  include content/aboutus
+  include content/team
+  include content/process
+script#features-template(type='text/template')
+  include content/featuresall
+script#services-template(type='text/template')
+  include content/services
+script#signup-template(type='text/template')
+  include content/signup
+script#signin-template(type='text/template')
+  include content/signin
+script#pricing-template(type='text/template')
+  include content/pricingpage
+script#contact-template(type='text/template')
+  include content/contactfull
+script#blog-template(type='text/template')
+  include content/blog
+script#reset-template(type='text/template')
+  include content/reset
+script#notFound-template(type='text/template')
+  include content/404
+script#success-template(type='text/template')
+  include content/success-alert
+
+script(src='/js/bootstrap.min.js')
+script(src='/js/theme.js')
+script(type='text/javascript', src='/js/index-slider.js')
+script(type='text/javascript', src='/js/flexslider.js')
+
+script(type='text/javascript', src='/js/app.js')
+
+script(type='text/javascript')
+  App.start();

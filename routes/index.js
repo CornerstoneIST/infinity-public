@@ -1,32 +1,63 @@
-
-/*
- * GET home page.
- */
+var
+  config = require('../config/config').config,
+  MailService = require('../services/Mail');
+  User = require('../schemas/user');
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Home' })
+  res.render('index')
 };
 
-exports.comingsoon = function(req, res){
-	res.render('coming-soon', { title: 'Wuzy is Coming Soon!'})
+exports.newuser = function(req, res){
+  var user = new User(req.body);
+  user.save(function (err, user) {
+    if (err) {
+      console.error(err);
+      res.send('error saving User', 500);
+      return;
+    }
+    MailService.sendUserRegisterMail(user);
+    req.session.user_id = user._id;
+    res.send(user);
+  })
+};
+exports.logout = function (req, res, next) {
+  if (req.session) {
+    req.session.destroy();
+  }
+  res.redirect('/signin');
 };
 
-exports.contact = function(req, res){
-	res.render('contact', { title: 'Contact' })
+exports.checkUser = function (req, res, next) {
+  if (req.session && req.session.user_id) {
+    User.findById(req.session.user_id, function(err, user) {
+      if (err || !user) {
+        console.error(err);
+        res.send('User not found', 401);
+        return;
+      }
+      res.send('User found', 200);
+    });
+  } else {
+    res.send('User not found', 401);
+  }
 };
 
-exports.about = function(req, res){
-	res.render('about', { title: 'About Us' })
+exports.setUser = function (req, res, next) {
+  User.findOne({ email: req.body.email }, function(err, user) {
+    if (err || !user) {
+      console.error(err);
+      res.send('User not found', 400);
+      return;
+    }
+    if (user && user.password == req.body.password) {
+      req.session.user_id = user._id;
+      res.send('User found', 200);
+    } else {
+      res.send('User not found', 401);
+    }
+  });
 };
-
-exports.signup = function(req, res){
-	res.render('signup', { title: 'Sign Up' })
-};
-
-exports.signin = function(req, res){
-	res.render('signin', { title: 'Login to your Account' })
-};
-
+//
 exports.privacypolicy = function(req, res){
 	res.render('privacypolicy', { title: 'Privacy Policy' })
 };
@@ -39,22 +70,6 @@ exports.forgotpassword = function(req, res){
 	res.render('forgotpassword', { title: 'Recover your Password' })
 };
 
-exports.features = function(req, res){
-	res.render('features', { title: 'Features' })
-};
-
-exports.services = function(req, res){
-	res.render('services', { title: 'Services' })
-};
-
 exports.reset = function(req, res){
 	res.render('reset', { title: 'Reset Your Password' })
-};
-
-exports.pricing = function(req, res){
-	res.render('pricing', { title: 'Pricing' })
-};
-
-exports.blog = function(req, res){
-	res.render('blog', { title: 'Blog' })
 };
