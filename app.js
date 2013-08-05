@@ -23,6 +23,7 @@ app.configure(function(){
     store: new MongoStore({
       url: config.mongodbUrl
     }),
+    cookie: { domain: '.wuzy.com' },
     secret: 'hMmbCcSLGFPTTvnsqgvDFddQo1d5t5ru'
   }));
   app.use(express.methodOverride());

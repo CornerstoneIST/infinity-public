@@ -7,8 +7,14 @@ exports.index = function(req, res){
   res.render('index')
 };
 
+exports.showId = function(req, res, next){
+  console.log(req.session.user_id);
+  next();
+};
+
 exports.newuser = function(req, res){
   var user = new User(req.body);
+  user.type = 'owner'
   user.save(function (err, user) {
     if (err) {
       console.error(err);
@@ -35,7 +41,11 @@ exports.checkUser = function (req, res, next) {
         res.send('User not found', 401);
         return;
       }
-      res.send('User found', 200);
+      if (user.type == 'owner') {
+        res.send('User found', 200);
+      } else {
+        res.send('User access denied', 401);
+      }
     });
   } else {
     res.send('User not found', 401);
