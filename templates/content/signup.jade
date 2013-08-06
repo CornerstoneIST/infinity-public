@@ -29,7 +29,10 @@
                 .form
                   form
                     input(type='email', name='email', placeholder='Email')
+                    #emailErr.alert.alert-error.hide Check email 
                     input(type='password', name='password', placeholder='Password')
+                    input(type='password', name='confPassword', placeholder='Confirm password')
+                    #matchErr.alert.alert-error.hide Passwords must match
                     .forgot
                       span Already have an account?
                       a(href='signin') Sign in

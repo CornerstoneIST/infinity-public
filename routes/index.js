@@ -3,22 +3,21 @@ var
   MailService = require('../services/Mail');
   User = require('../schemas/user');
 
-exports.index = function(req, res){
+exports.index = function (req, res) {
   res.render('index')
 };
 
-exports.showId = function(req, res, next){
-  console.log(req.session.user_id);
-  next();
-};
-
-exports.newuser = function(req, res){
+exports.newuser = function (req, res) {
+  if (req.body.password != req.body.confPassword) {
+    res.send('Passwords must match', 400);
+    return;
+  }
   var user = new User(req.body);
   user.type = 'owner'
   user.save(function (err, user) {
     if (err) {
       console.error(err);
-      res.send('error saving User', 500);
+      res.send(['error saving User', err], 500);
       return;
     }
     MailService.sendUserRegisterMail(user);
@@ -68,7 +67,7 @@ exports.setUser = function (req, res, next) {
   });
 };
 //
-exports.privacypolicy = function(req, res){
+exports.privacypolicy = function (req, res) {
 	res.render('privacypolicy', { title: 'Privacy Policy' })
 };
 
