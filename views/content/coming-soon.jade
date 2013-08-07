@@ -1,0 +1,66 @@
+#coming_soon
+  .head
+    .container
+      .span6.text
+        h4 We are launching very soon
+        p
+          | We are currently working on an awesome new site.
+          span  STAY TUNED!
+          br
+          | Please don´t  forget to check out our tweets and subscribe to be notified.
+      #clock.span6.count
+        .box.last
+          .circle
+            span#seconds
+          p Seconds
+        .box
+          .circle
+            span#minutes
+          p Minutes
+        .box
+          .circle
+            span#hours
+          p Hours
+        .box
+          .circle
+            span#days
+          p Days
+  .email_wrapp
+    .container
+      .span11.wrapp
+        p
+          strong Sign up here
+          |  to be one of the first to know when it´s ready
+        input(type='text', placeholder='Email address...')
+        a.btn.send(href='#') ok
+    script(src='http://code.jquery.com/jquery-latest.js')
+    script(src='js/bootstrap.min.js')
+    script(src='js/jquery.countdown.min.js')
+    script(src='js/theme.js')
+    script(type='text/javascript')
+      $(function () {
+      var currentDate = new Date(),
+      finished = false,
+      availiableExamples = {
+      set35daysFromNow: 35 * 24 * 60 * 60 * 1000 * 454,
+      set5minFromNow  : 5 * 60 * 1000,
+      set1minFromNow  : 1 * 60 * 1000,
+      setToJuly14th : 1373789000000
+
+      };
+      function callback(event) {
+      $this = $(this);
+      $this.find('span#'+event.type).html(event.value);
+      switch(event.type) {
+      case "seconds":
+      case "minutes":
+      case "hours":
+      case "days":
+      case "weeks":
+      case "daysLeft":
+      case "finished":
+      }
+      }
+      $('div#clock').countdown(availiableExamples.setToJuly14th, callback);
+      });
+
