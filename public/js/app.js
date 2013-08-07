@@ -201,8 +201,11 @@ var
         if (this.$('input[name=email]').val() == '') {
           this.$('#emailErr').show();
           return;
+        } else if (this.$('input[name=password]').val().length <= 5) {
+          this.$('#passErr').show().text('Password should be at least 6 characters');
+          return;
         } else if (this.$('input[name=password]').val() != this.$('input[name=confPassword]').val()) {
-          this.$('#matchErr').show();
+          this.$('#passErr').show().text('Passwords must match');
           return;
         } else {
           this.$('.alert').hide();

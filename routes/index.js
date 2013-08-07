@@ -12,6 +12,10 @@ exports.newuser = function (req, res) {
     res.send('Passwords must match', 400);
     return;
   }
+  if (req.body.password.length <= 5) {
+    res.send('Password should be at least 6 characters', 400);
+    return;
+  }
   var user = new User(req.body);
   user.type = 'owner'
   user.save(function (err, user) {
