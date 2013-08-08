@@ -71,7 +71,7 @@ exports.setUser = function (req, res, next) {
         req.session.user_id = user._id;
         res.send('User found', 200);
       } else {
-        res.send('User access denied', 401);
+        res.send('Wrong password', 401);
       }
     });
   });

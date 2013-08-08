@@ -248,8 +248,12 @@ var
                 App.MenuView.home();
               }
             },
-            error: function () {
-              console.log(arguments);
+            error: function (res) {
+              App.modal.show(new AccessErrView({
+                model: new Backbone.Model({
+                  data: res.responseText
+                })
+              }));
             }
           };
         $.ajax(options);
@@ -273,6 +277,10 @@ var
   }),
   SuccessView = Backbone.Marionette.ItemView.extend({
     template: "#success-template",
+    className: "modal-dialog"
+  }),
+  AccessErrView = Backbone.Marionette.ItemView.extend({
+    template: "#access-err-template",
     className: "modal-dialog"
   }),
   Router = Marionette.AppRouter.extend({

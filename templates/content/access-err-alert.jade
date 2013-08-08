@@ -1,0 +1,8 @@
+.modal-content
+  .modal-header
+    button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+    h4.modal-title Check your data
+  .modal-body
+    h3.alert.alert-error <%= data %>
+  .modal-footer.form-actions
+    button#confirm.btn.btn-success.span1.pull-right(type="button", data-dismiss="modal") OK
