@@ -5,7 +5,8 @@ var
     type: String
   },
   company: {
-    type: String
+    type: mongoose.Schema.ObjectId,
+    ref: 'Company'
   },
   state: {
     type: String

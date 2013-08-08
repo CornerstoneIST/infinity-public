@@ -9,5 +9,6 @@
     , "jade": ">= 0.0.1"
     , "mongoose": "*"
     , "connect-mongo": "*"
+    , "bcrypt" : "*"
   }
 }

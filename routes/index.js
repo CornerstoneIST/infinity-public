@@ -1,7 +1,7 @@
-var
-  config = require('../config/config').config,
-  MailService = require('../services/Mail');
-  User = require('../schemas/user');
+var config = require('../config/config').config
+  , bcrypt = require('bcrypt')
+  , MailService = require('../services/Mail')
+  , User = require('../schemas/user');
 
 exports.index = function (req, res) {
   res.render('index')
@@ -17,16 +17,19 @@ exports.newuser = function (req, res) {
     return;
   }
   var user = new User(req.body);
-  user.type = 'owner'
-  user.save(function (err, user) {
-    if (err) {
-      console.error(err);
-      res.send(['error saving User', err], 500);
-      return;
-    }
-    MailService.sendUserRegisterMail(user);
-    req.session.user_id = user._id;
-    res.send(user);
+  bcrypt.hash(req.body.password, 8, function(err, hash) {
+    user.type = 'owner';
+    user.password = hash;
+    user.save(function (err, user) {
+      if (err) {
+        console.error(err);
+        res.send(['error saving User', err], 500);
+        return;
+      }
+      MailService.sendUserRegisterMail(user);
+      req.session.user_id = user._id;
+      res.send(user);
+    })
   })
 };
 exports.logout = function (req, res, next) {
@@ -62,12 +65,15 @@ exports.setUser = function (req, res, next) {
       res.send('User not found', 400);
       return;
     }
-    if (user && user.password == req.body.password) {
-      req.session.user_id = user._id;
-      res.send('User found', 200);
-    } else {
-      res.send('User not found', 401);
-    }
+    bcrypt.compare(req.body.password, user.password, function(err, ans) {
+      if (err) throw err;
+      if (ans) {
+        req.session.user_id = user._id;
+        res.send('User found', 200);
+      } else {
+        res.send('User access denied', 401);
+      }
+    });
   });
 };
 //
