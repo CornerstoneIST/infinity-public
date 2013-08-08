@@ -220,8 +220,12 @@ var
                 $('.navbar a[href=signup]').attr('href', 'logout').text('LOGOUT');
                 App.MenuView.home();
               },
-              error: function () {
-                console.log(arguments);
+              error: function (res) {
+                App.modal.show(new AccessErrView({
+                  model: new Backbone.Model({
+                    data: res.responseText
+                  })
+                }));
               }
             };
           $.ajax(options);
@@ -242,11 +246,13 @@ var
             type: 'post',
             url: '/api/set-user',
             data: this.$('form').serialize(),
-            success: function (expl, status, data) {
-              if (data.status == 200) {
-                $('.navbar a[href=signup]').attr('href', 'logout').text('LOGOUT');
-                App.MenuView.home();
+            success: function (resp) {
+              if (resp.redirect) {
+                window.location = resp.url;
+                return;
               }
+              $('.navbar a[href=signup]').attr('href', 'logout').text('LOGOUT');
+              App.MenuView.home();
             },
             error: function (res) {
               App.modal.show(new AccessErrView({

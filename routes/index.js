@@ -23,6 +23,10 @@ exports.newuser = function (req, res) {
     user.save(function (err, user) {
       if (err) {
         console.error(err);
+        if (err.code == 11000) {
+          res.send('This email is in use', 500);
+          return;
+        }
         res.send(['error saving User', err], 500);
         return;
       }
@@ -47,11 +51,7 @@ exports.checkUser = function (req, res, next) {
         res.send('User not found', 401);
         return;
       }
-      if (user.type == 'owner') {
-        res.send('User found', 200);
-      } else {
-        res.send('User access denied', 401);
-      }
+      res.send('User found', 200);
     });
   } else {
     res.send('User not found', 401);
@@ -65,15 +65,29 @@ exports.setUser = function (req, res, next) {
       res.send('User not found', 400);
       return;
     }
-    bcrypt.compare(req.body.password, user.password, function(err, ans) {
-      if (err) throw err;
-      if (ans) {
-        req.session.user_id = user._id;
-        res.send('User found', 200);
-      } else {
-        res.send('Wrong password', 401);
-      }
-    });
+    if (!user.password) {
+      res.send('User is not activated', 401);
+    } else {
+      bcrypt.compare(req.body.password, user.password, function(err, ans) {
+        if (err) throw err;
+        if (ans) {
+          req.session.user_id = user._id;
+
+          if (user.type == 'owner') {
+            res.json({
+              redirect: true,
+              url: config.adminUrl
+            });
+            return;
+          } else {
+            res.send('User found', 200);
+          }
+
+        } else {
+          res.send('Wrong password', 401);
+        }
+      });
+    }
   });
 };
 //
