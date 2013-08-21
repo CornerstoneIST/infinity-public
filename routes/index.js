@@ -16,25 +16,36 @@ exports.newuser = function (req, res) {
     res.send('Password should be at least 6 characters', 400);
     return;
   }
-  var user = new User(req.body);
-  bcrypt.hash(req.body.password, 8, function(err, hash) {
-    user.type = 'owner';
-    user.password = hash;
-    user.save(function (err, user) {
-      if (err) {
-        console.error(err);
-        if (err.code == 11000) {
-          res.send('This email is in use', 500);
-          return;
-        }
-        res.send(['error saving User', err], 500);
-        return;
-      }
-      MailService.sendUserRegisterMail(user);
-      req.session.user_id = user._id;
-      res.send(user);
-    })
-  })
+  User.find({
+    email: req.body.email,
+    type: 'owner'
+  }).count(function (err, count) {
+    if (err) {
+      console.error(err);
+    }
+    if (count > 0) {
+      res.send('This email is in use', 500);
+      return;
+    } else {
+      var user = new User(req.body);
+      bcrypt.hash(req.body.password, 8, function(err, hash) {
+        user.type = 'owner';
+        user.password = hash;
+        user.save(function (err, user) {
+          if (err) {
+            console.error(err);
+            if (err.code == 11000) {
+            }
+            res.send(['error saving User', err], 500);
+            return;
+          }
+          MailService.sendUserRegisterMail(user);
+          req.session.user_id = user._id;
+          res.send(user);
+        })
+      })
+    }
+  });
 };
 exports.logout = function (req, res, next) {
   if (req.session) {
